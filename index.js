@@ -959,7 +959,6 @@ function Click(element, fromButton){
 			forShift();
 		}
 		else Unclick(element);
-		console.log(9);
 		this.removeEventListener('mouseup', arguments.callee)})
 	
 }
