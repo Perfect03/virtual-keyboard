@@ -81,6 +81,11 @@ button, input, optgroup, select, textarea {
   width: 400px;
   margin: 50px auto;
 }
+.sorry{
+  width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
 
 .keyboard {
   width: 704px;

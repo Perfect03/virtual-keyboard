@@ -33,6 +33,11 @@ about.classList.add('about');
 about.innerHTML='Shortcut for switching a language: CtrlLeft + ShiftLeft';
 container.appendChild(about);
 
+const sorry=document.createElement('div');
+sorry.classList.add('sorry');
+sorry.innerHTML='Приношу извинения за некорректно работающие смену языка и клавишу Shift. Постараюсь исправить в ближайшее время.';
+container.appendChild(sorry);
+
 let rows=[];
 for(let i=0;i<5;i++)
 {
