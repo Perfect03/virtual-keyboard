@@ -818,7 +818,7 @@ function SwitchLang(){
 		//console.log(lan);
 }
 
-function Unclick(element){
+function Unclick(element){console.log(111);
 	if(element.classList.contains('ShiftLeft') || element.classList.contains('ShiftRight')){
 {forShift();}
 	}
@@ -886,6 +886,29 @@ e.classList.add('hidden')
 }
 }
 
+function forShiftCaps(){
+	let t=[];
+	t[0]=document.querySelectorAll('.caseDown');
+t[1]=document.querySelectorAll('.caseUp');
+t[3]=document.querySelectorAll('.caps');
+t[2]=document.querySelectorAll('.shiftCaps');
+
+
+
+t[0].forEach((e) =>{
+e.classList.toggle('hidden');
+})
+t[1].forEach((e) =>{
+	e.classList.toggle('hidden');
+	})
+for(let i=2;i<4;i++)
+{
+t[i].forEach((e) =>{
+e.classList.add('hidden')
+})
+}
+}
+
 function Click(element, fromButton){
 
 	if(element.classList.contains('CapsLock') && element.style.borderRadius=='50px'){
@@ -929,7 +952,14 @@ function Click(element, fromButton){
 	}
 
 
-	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', () => {Unclick(element); this.removeEventListener('mouseup', arguments.callee)})
+	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', () => {
+		
+		if(element.classList.contains('ShiftLeft') || element.classList.contains('ShiftRight')) {
+			element.style.background='#222222';
+			element.style.borderRadius='0';
+		}
+		else Unclick(element);
+		this.removeEventListener('mouseup', arguments.callee)})
 	
 }
 
@@ -956,11 +986,12 @@ document.addEventListener('keydown', event => {
 		}
 
 
-		if(true)
 	document.addEventListener('keyup', function(event) {
 		//console.log(9);
-	Unclick(document.querySelector(`.${event.code}`));
-	flagCaps=true;
+		if((event.code != 'ShiftLeft') && (event.code != 'ShiftRight')) Unclick(document.querySelector(`.${event.code}`));
+else {document.querySelector(`.${event.code}`).style.background='#222222';
+document.querySelector(`.${event.code}`).style.borderRadius='0';}
+		flagCaps=true;
 	
 })
 /*else
