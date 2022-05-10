@@ -32,12 +32,12 @@ const about=document.createElement('div');
 about.classList.add('about');
 about.innerHTML='Shortcut for switching a language: CtrlLeft + ShiftLeft';
 container.appendChild(about);
-
+/*
 const sorry=document.createElement('div');
 sorry.classList.add('sorry');
 sorry.innerHTML='Приношу извинения за некорректно работающую клавишу Shift. Постараюсь исправить в ближайшее время.';
 container.appendChild(sorry);
-
+*/
 let rows=[];
 for(let i=0;i<5;i++)
 {
@@ -815,10 +815,10 @@ function SwitchLang(){
 		})
 		if(rus[0].classList.contains('hidden')) localStorage.setItem('lang', 'eng');
 		else localStorage.setItem('lang', 'rus');
-		//console.log(lan);
+		
 }
 
-function Unclick(element){console.log(111);
+function Unclick(element){
 	if(element.classList.contains('ShiftLeft') || element.classList.contains('ShiftRight')){
 {forShift();}
 	}
