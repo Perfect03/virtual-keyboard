@@ -1,5 +1,4 @@
 ﻿
-
 const title=document.createElement('p');
 title.classList.add('title');
 const textarea=document.createElement('textarea');
