@@ -906,7 +906,21 @@ function Click(element, fromButton){
 		{
 			forShift();
 		}
-		if(element.classList.contains('Enter')) textarea.value+="\n";
+		if(element.classList.contains('Delete') && textarea.selectionStart >0) 
+		{
+			let u=textarea.selectionStart;
+			textarea.value=textarea.value.slice(0, u) + textarea.value.slice(u+1, textarea.value.length);
+			textarea.selectionStart=u;
+			textarea.selectionEnd=u;
+		}
+		if(element.classList.contains('Enter')) {
+			let u=textarea.selectionStart;
+			textarea.value=textarea.value.slice(0, u) +"\n" + textarea.value.slice(u, textarea.value.length);
+			textarea.selectionStart=u+1;
+			textarea.selectionEnd=u+1;
+			//textarea.value+="\n";
+	
+	}
 	}
 
 
