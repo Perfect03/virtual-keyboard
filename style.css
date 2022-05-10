@@ -77,6 +77,11 @@ button, input, optgroup, select, textarea {
   margin: 0;
 }
 
+.about{
+  width: 400px;
+  margin: 50px auto;
+}
+
 .keyboard {
   width: 704px;
   margin: 0 auto;

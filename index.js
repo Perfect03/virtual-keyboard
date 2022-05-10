@@ -12,7 +12,7 @@ textarea.setAttribute('rows',5)
 textarea.setAttribute('cols',50)
 textarea.style.cursor="text";
 
-title.innerHTML="RSS Виртуальная клавиатура";
+title.innerHTML="RSS Виртуальная клавиатура (WINDOWS)";
 
 const body=document.querySelector('body');
 
@@ -27,6 +27,11 @@ keyboard.classList.add('keyboard');
 keyboard.classList.add('body--keyboard');
 keyboard.id='keyboard';
 container.appendChild(keyboard);
+
+const about=document.createElement('div');
+about.classList.add('about');
+about.innerHTML='Shortcut for switching a language: CtrlLeft + ShiftLeft';
+container.appendChild(about);
 
 let rows=[];
 for(let i=0;i<5;i++)
@@ -782,6 +787,17 @@ shiftCapsEng[61].innerHTML='▼';
 shiftCapsEng[62].innerHTML='►';
 shiftCapsEng[63].innerHTML='Ctrl';
 
+
+if (localStorage.getItem('lang') == 'eng') {
+SwitchLang();
+}
+
+let rus=document.querySelectorAll('.rus');
+
+if(rus[0].classList.contains('hidden'))
+localStorage.setItem('lang', 'eng');
+else localStorage.setItem('lang', 'rus');
+
 function SwitchLang(){
 	let rus=document.querySelectorAll('.rus');
 	let eng=document.querySelectorAll('.eng');
@@ -792,18 +808,21 @@ function SwitchLang(){
 	eng.forEach((e) =>{
 		e.classList.toggle('hidden');
 		})
-		if(rus[0].classList.contains('hidden')) lan='eng';
-		else lan='rus';
-		console.log(lan);
+		if(rus[0].classList.contains('hidden')) localStorage.setItem('lang', 'eng');
+		else localStorage.setItem('lang', 'rus');
+		//console.log(lan);
 }
 
 function Unclick(element){
 	if(element.classList.contains('ShiftLeft') || element.classList.contains('ShiftRight')){
-forShift();
+{forShift();}
 	}
 	if(element.classList.contains('text'))
 	element.style.background='#444444';
-	else if(!(element.code == 'CapsLock')) element.style.background='#222222';
+	else if((!(element.code == 'CapsLock' || element.classList.contains('CapsLock')))) {element.style.background='#222222';}
+	else {
+		t=document.querySelectorAll('.caseDown');
+		if((!(t[0].classList.contains('hidden')))) {element.style.background='#222222';console.log(element);}}
 	element.style.borderRadius='0';
 	
 	element.addEventListener('mouseover', () =>{
@@ -883,7 +902,7 @@ function Click(element, fromButton){
 		{
 			forCaps();
 		}
-		if(element.classList.contains('ShiftLeft') || element.classList.contains('ShiftRight')) 
+		if((element.classList.contains('ShiftLeft')) || (element.classList.contains('ShiftRight')) )
 		{
 			forShift();
 		}
@@ -891,7 +910,7 @@ function Click(element, fromButton){
 	}
 
 
-	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', () => Unclick(element))
+	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', () => {Unclick(element); console.log(666);this.removeEventListener('mouseup', arguments.callee)})
 	
 }
 
