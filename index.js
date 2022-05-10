@@ -952,13 +952,15 @@ function Click(element, fromButton){
 	}
 
 
-	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', () => {
+	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', function(event) {
 		
 		if(element.classList.contains('ShiftLeft') || element.classList.contains('ShiftRight')) {
 			element.style.background='#222222';
 			element.style.borderRadius='0';
+			forShift();
 		}
 		else Unclick(element);
+		console.log(9);
 		this.removeEventListener('mouseup', arguments.callee)})
 	
 }
@@ -987,12 +989,11 @@ document.addEventListener('keydown', event => {
 
 
 	document.addEventListener('keyup', function(event) {
-		//console.log(9);
 		if((event.code != 'ShiftLeft') && (event.code != 'ShiftRight')) Unclick(document.querySelector(`.${event.code}`));
 else {document.querySelector(`.${event.code}`).style.background='#222222';
-document.querySelector(`.${event.code}`).style.borderRadius='0';}
+document.querySelector(`.${event.code}`).style.borderRadius='0';forShift();}
 		flagCaps=true;
-	
+	this.removeEventListener('keyup', arguments.callee);
 })
 /*else
 {
