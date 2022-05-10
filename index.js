@@ -35,7 +35,7 @@ container.appendChild(about);
 
 const sorry=document.createElement('div');
 sorry.classList.add('sorry');
-sorry.innerHTML='Приношу извинения за некорректно работающие смену языка и клавишу Shift. Постараюсь исправить в ближайшее время.';
+sorry.innerHTML='Приношу извинения за некорректно работающую клавишу Shift. Постараюсь исправить в ближайшее время.';
 container.appendChild(sorry);
 
 let rows=[];
@@ -827,7 +827,7 @@ function Unclick(element){
 	else if((!(element.code == 'CapsLock' || element.classList.contains('CapsLock')))) {element.style.background='#222222';}
 	else {
 		t=document.querySelectorAll('.caseDown');
-		if((!(t[0].classList.contains('hidden')))) {element.style.background='#222222';console.log(element);}}
+		if((!(t[0].classList.contains('hidden')))) {element.style.background='#222222';}}
 	element.style.borderRadius='0';
 	
 	element.addEventListener('mouseover', () =>{
@@ -929,7 +929,7 @@ function Click(element, fromButton){
 	}
 
 
-	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', () => {Unclick(element); console.log(666);this.removeEventListener('mouseup', arguments.callee)})
+	if(!element.classList.contains('CapsLock')) window.addEventListener('mouseup', () => {Unclick(element); this.removeEventListener('mouseup', arguments.callee)})
 	
 }
 
@@ -979,29 +979,53 @@ document.addEventListener('keydown', event => {
 
 let t=[]; let b=null;
 t[0]='ShiftLeft';t[1]='ControlLeft';
+for(let j=0;j<2;j++){
+
+}
 	if(event.code =='ShiftLeft') {
 		//console.log(444);
-		document.addEventListener('keydown', () => {Press(event, 'ControlLeft');console.log(22);
+		document.addEventListener('keydown', () => {
+			if(event.code == 'ControlLeft'){
+				document.addEventListener('keyup', function(event) {
+					SwitchLang();
+					this.removeEventListener('keyup', arguments.callee);
+				})
+			}
+			//Press(event, 'ControlLeft');
+		//console.log(22);
 		document.addEventListener('keyup', function(event) {
-			this.removeEventListener('keyup', Press(event, 'ControlLeft'));
+			//console.log(888);
+			this.removeEventListener('keydown', Press(event, 'ControlLeft'));
+			this.removeEventListener('keyup', arguments.callee);
 		})
 	})
+
+	
 	}
 else if(event.code =='ControlLeft') {
 //	console.log(333);
-	document.addEventListener('keydown', () => {Press(event, 'ShiftLeft');console.log(44);
+	document.addEventListener('keydown', () => {
+		if(event.code == 'ShiftLeft'){
+				document.addEventListener('keyup', function(event) {
+					SwitchLang();
+					this.removeEventListener('keyup', arguments.callee);
+				})
+			}
+		//Press(event, 'ShiftLeft');
+	//console.log(44);
 	document.addEventListener('keyup', function(event) {
-		this.removeEventListener('keyup', Press(event, 'ShiftLeft'));
+		//console.log(999);
+		this.removeEventListener('keydown', Press(event, 'ShiftLeft'));
+			this.removeEventListener('keyup', arguments.callee);
 	})})
+	
 }
 
 
-
-//if(b!=null) {Press(t, b);console.log(b);}
 }});
 
 function Press(t, a){
-	console.log(4444444);
+//	console.log(4444444);
 	if(t.code ==a)
 			{
 				//console.log(444);
