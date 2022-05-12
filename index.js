@@ -923,8 +923,14 @@ function Click(element, fromButton){
 	if(element.classList.contains('text'))
 	{textarea.value+=element.innerText;}
 	else{
-		if(element.classList.contains('Tab')) textarea.value+="    ";
-		if(element.classList.contains('Backspace')) textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+		if(element.classList.contains('Tab')) {let u=textarea.selectionStart;
+			textarea.value=textarea.value.slice(0, u) +"	" + textarea.value.slice(u, textarea.value.length);
+			textarea.selectionStart=u+1;
+			textarea.selectionEnd=u+1;}
+		if(element.classList.contains('Backspace')) {let u=textarea.selectionStart;
+			textarea.value=textarea.value.slice(0, u-1) + textarea.value.slice(u, textarea.value.length);
+			textarea.selectionStart=u-1;
+			textarea.selectionEnd=u-1;}
 		if(element.classList.contains('CapsLock')) 
 		{
 			forCaps();
@@ -1055,29 +1061,11 @@ else if(event.code =='ControlLeft') {
 }});
 
 function Press(t, a){
-//	console.log(4444444);
 	if(t.code ==a)
 			{
-				//console.log(444);
+				
 				SwitchLang();
-				//this.removeEventListener('keydown', arguments.callee);
 				
 			}
 
 }
-/*
-function Press(t, c){
-	document.addEventListener('keydown', (event) => {
-		Press2(event,t[c]);
-	})
-	document.addEventListener('keyup', (event) => {
-	document.removeEventListener('keydown', Press2(event,t[c]));
-})
-	
-}
-
-function Press2(e, t){
-	if(e.code == t) SwitchLang();
-}
-
-*/
