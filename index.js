@@ -31,12 +31,7 @@ const about=document.createElement('div');
 about.classList.add('about');
 about.innerHTML='Shortcut for switching a language: CtrlLeft + ShiftLeft';
 container.appendChild(about);
-/*
-const sorry=document.createElement('div');
-sorry.classList.add('sorry');
-sorry.innerHTML='Приношу извинения за некорректно работающую клавишу Shift. Постараюсь исправить в ближайшее время.';
-container.appendChild(sorry);
-*/
+
 let rows=[];
 for(let i=0;i<5;i++)
 {
@@ -63,7 +58,7 @@ for(let i=0;i<14;i++)
 row1[0].classList.add('Backquote', 'text');
 for(let i=0;i<9;i++)
 {
-	row1[i+1].classList.add(`Digit${i}`);
+	row1[i+1].classList.add(`Digit${i+1}`);
 	row1[i+1].classList.add('text');
 }
 row1[10].classList.add('Digit0', 'text');
@@ -185,7 +180,7 @@ engcaps.classList.add('caps');
 russhiftCaps.classList.add('shiftCaps');
 engshiftCaps.classList.add('shiftCaps');
 
-//engcaseDown.classList.add('hidden');
+
 rusCaseUp.classList.add('hidden');
 engCaseUp.classList.add('hidden');
 ruscaps.classList.add('hidden');
@@ -919,7 +914,7 @@ function Click(element, fromButton){
 	element.style.background='#28fd73';
 	element.style.borderRadius='50px';
 
-	//for text symbols
+
 	if(element.classList.contains('text'))
 	{textarea.value+=element.innerText;}
 	else{
@@ -951,7 +946,7 @@ function Click(element, fromButton){
 			textarea.value=textarea.value.slice(0, u) +"\n" + textarea.value.slice(u, textarea.value.length);
 			textarea.selectionStart=u+1;
 			textarea.selectionEnd=u+1;
-			//textarea.value+="\n";
+			
 	
 	}
 	}
@@ -971,11 +966,7 @@ function Click(element, fromButton){
 
 Array.from(document.getElementsByClassName('key')).forEach(element =>{
 	element.addEventListener('mousedown', () => {Click(element, false);
-		/*if(element.classList.contains('CapsLock')){
-			window.addEventListener('mousedown', () => function() {console.log(11);Unclick(element);
-				//this.removeEventListener('mousedown', arguments.callee)
-			})
-		}*/
+		
 	})
 })
 
@@ -985,8 +976,6 @@ document.addEventListener('keydown', event => {
 	event.preventDefault();
 	if(flagCaps)
 {
-	//console.log(789);
-	//console.log(document.getElementsByClassName(`${event.code}`)[0].innerText);
 	Click(document.getElementsByClassName(`${event.code}`)[0], true);
 	if(event.code == 'CapsLock') {flagCaps=false;
 		}
@@ -999,27 +988,12 @@ document.querySelector(`.${event.code}`).style.borderRadius='0';forShift();}
 		flagCaps=true;
 	this.removeEventListener('keyup', arguments.callee);
 })
-/*else
-{
-	document.addEventListener('keydown', function(event) {
-		if(event.code=='CapsLock') 
-		{
-		forCaps();
-		Unclick(document.querySelector(`.${event.code}`));
-		this.removeEventListener('keydown', arguments.callee);
-		flagCaps=true;
-		//console.log(8);
-		}
-	});
-}*/
 
-let t=[]; let b=null;
-t[0]='ShiftLeft';t[1]='ControlLeft';
+
 for(let j=0;j<2;j++){
 
 }
 	if(event.code =='ShiftLeft') {
-		//console.log(444);
 		document.addEventListener('keydown', () => {
 			if(event.code == 'ControlLeft'){
 				document.addEventListener('keyup', function(event) {
@@ -1027,10 +1001,7 @@ for(let j=0;j<2;j++){
 					this.removeEventListener('keyup', arguments.callee);
 				})
 			}
-			//Press(event, 'ControlLeft');
-		//console.log(22);
 		document.addEventListener('keyup', function(event) {
-			//console.log(888);
 			this.removeEventListener('keydown', Press(event, 'ControlLeft'));
 			this.removeEventListener('keyup', arguments.callee);
 		})
@@ -1039,7 +1010,6 @@ for(let j=0;j<2;j++){
 	
 	}
 else if(event.code =='ControlLeft') {
-//	console.log(333);
 	document.addEventListener('keydown', () => {
 		if(event.code == 'ShiftLeft'){
 				document.addEventListener('keyup', function(event) {
@@ -1047,10 +1017,7 @@ else if(event.code =='ControlLeft') {
 					this.removeEventListener('keyup', arguments.callee);
 				})
 			}
-		//Press(event, 'ShiftLeft');
-	//console.log(44);
 	document.addEventListener('keyup', function(event) {
-		//console.log(999);
 		this.removeEventListener('keydown', Press(event, 'ShiftLeft'));
 			this.removeEventListener('keyup', arguments.callee);
 	})})
